@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import CommentList from "../list/CommentList";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
-import data from "../../data.json";
+import axios from "axios";
+// import data from "../../data.json";
 
 const Wrapper = styled.div`
     padding: 16px;
@@ -50,11 +51,14 @@ function PostViewPage() {
     const navigate = useNavigate();
     const { postId } = useParams();
 
-    const post = data.find((item) => {
-        return item.idx == postId;
-    });
-
+    const [post, setPost] = useState([]);
     const [ comment, setComment ] = useState("");
+
+    useEffect(() => {
+        axios.get(`/blog/get/${postId}`)
+            .then(response => setPost(response.data))
+            .catch(error => console.error(error));
+    }, []);
 
     return (
         <Wrapper>
@@ -70,7 +74,8 @@ function PostViewPage() {
                     <ContentText>{post.content}</ContentText>
 
                     <CommentLabel>댓글</CommentLabel>
-                    <CommentList comments={post.comments} />
+                    {/* 아직 미구현 */}
+                    {/* <CommentList comments={post.blogReplyList} /> */}
 
                     <TextInput height={40} value={comment}
                         onChange={(event) => {
