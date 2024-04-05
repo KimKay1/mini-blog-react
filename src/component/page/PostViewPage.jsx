@@ -63,8 +63,11 @@ function PostViewPage() {
     const eventDelete = () => {
         if(window.confirm("삭제하시겠습니까?")) {
             axios.post(`/blog/delete/${postId}`)
+                .then(response => {
+                    alert("삭제 완료");
+                    navigate("/");
+                })
                 .catch(error => console.error(error));
-            navigate("/");
         }
 
     }
@@ -97,6 +100,7 @@ function PostViewPage() {
                     <CommentLabel>댓글</CommentLabel>
                     {/* 아직 미구현 */}
                     {/* <CommentList comments={post.blogReplyList} /> */}
+                    {/* <CommentList comments={post.comment} /> */}
 
                     <TextInput height={40} value={comment}
                         onChange={(event) => {
