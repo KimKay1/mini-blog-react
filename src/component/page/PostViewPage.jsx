@@ -52,7 +52,7 @@ function PostViewPage() {
     const { postId } = useParams();
 
     const [post, setPost] = useState([]);
-    const [ comment, setComment ] = useState("");
+    const [comment, setComment] = useState("");
 
     useEffect(() => {
         axios.get(`/blog/get/${postId}`)
@@ -65,6 +65,18 @@ function PostViewPage() {
             <Container>
                 <Button
                     title="뒤로 가기"
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                />
+                <Button
+                    title="수정"
+                    onClick={() => {
+                        navigate(`/post-edit/${postId}`);
+                    }}
+                />
+                <Button
+                    title="삭제"
                     onClick={() => {
                         navigate("/");
                     }}

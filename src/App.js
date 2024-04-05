@@ -12,6 +12,7 @@ import axios from "axios";
 import MainPage from './component/page/MainPage';
 import PostViewPage from './component/page/PostViewPage';
 import PostWritePage from './component/page/PostWritePage';
+import PostEditPage from './component/page/PostEditPage';
 
 const MainTitletext = styled.p`
   font-size: 24px;
@@ -29,6 +30,7 @@ function App() {
         <Route path="post-write" element={<PostWritePage />} />
         {/* post/:postID 에서 :postID는 useParam */}
         <Route path="post/:postId" element={<PostViewPage />} />
+        <Route path="post-edit/:postId" element={<PostEditPage />} />
       </Routes>
     </BrowserRouter>
   );
