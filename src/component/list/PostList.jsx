@@ -19,7 +19,7 @@ function PostList(props) {
         <Wrapper>
             {posts.map((post) => {
                 return (
-                    <PostListItem key={post.id} post={post}
+                    <PostListItem key={post.idx} post={post}
                         onClick={() => { onClickItem(post); }} />
                 );
             })}

@@ -51,7 +51,7 @@ function PostViewPage() {
     const { postId } = useParams();
 
     const post = data.find((item) => {
-        return item.id == postId;
+        return item.idx == postId;
     });
 
     const [ comment, setComment ] = useState("");

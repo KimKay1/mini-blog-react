@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
+import axios from "axios";
 
 const Wrapper = styled.div`
     padding: 16px;
@@ -28,6 +29,21 @@ function PostWritePage() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
+    const submitBlog = () => {
+        axios.post("/blog/write", {
+            title: title,
+            content: content
+        })
+        .then(() => {
+            setTitle("");
+            setContent("");
+
+            alert("등록 완료");
+            navigate("/");
+        })
+        .catch(err => console.error(err));
+    }
+
     return (
         <Wrapper>
             <Container>
@@ -39,7 +55,7 @@ function PostWritePage() {
                 />
                 
                 <Button title="글 작성하기"
-                    onClick={() => { navigate("/") }}
+                    onClick={submitBlog}
                 />
             </Container>
         </Wrapper>

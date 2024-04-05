@@ -20,17 +20,9 @@ const MainTitletext = styled.p`
 `;
 
 function App() {
-  const [test, setTest] = useState("");
-
-  axios.get("/test")
-    .then(response => {
-      setTest(response.data);
-    })
-    .catch(err => console.error(err));
 
   return (
     <BrowserRouter>
-    <div>서버에서 가져온 데이터 출력해봄: {test}</div>
     <MainTitletext>나의 미니 블로그</MainTitletext>
       <Routes>
         <Route index element={<MainPage />} />
