@@ -60,6 +60,15 @@ function PostViewPage() {
             .catch(error => console.error(error));
     }, []);
 
+    const eventDelete = () => {
+        if(window.confirm("삭제하시겠습니까?")) {
+            axios.post(`/blog/delete/${postId}`)
+                .catch(error => console.error(error));
+            navigate("/");
+        }
+
+    }
+
     return (
         <Wrapper>
             <Container>
@@ -78,7 +87,7 @@ function PostViewPage() {
                 <Button
                     title="삭제"
                     onClick={() => {
-                        navigate("/");
+                        eventDelete()
                     }}
                 />
                 <PostContainer>
