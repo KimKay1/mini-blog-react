@@ -5,6 +5,7 @@ import CommentList from "../list/CommentList";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 // import data from "../../data.json";
 
 const Wrapper = styled.div`
@@ -53,10 +54,15 @@ function PostViewPage() {
 
     const [post, setPost] = useState([]);
     const [comment, setComment] = useState("");
+    const [updateReply, setUpdateReply] = useState("");
 
+    // post 관련
     useEffect(() => {
         axios.get(`/blog/get/${postId}`)
-            .then(response => setPost(response.data))
+            .then(response => {
+                setPost(response.data);
+                console.log(response.data);
+            })
             .catch(error => console.error(error));
     }, []);
 
@@ -69,8 +75,28 @@ function PostViewPage() {
                 })
                 .catch(error => console.error(error));
         }
-
     }
+
+    // Reply 관련
+    const addReply = () => {
+        axios.post(`/reply/write`, {
+            content: comment,
+            idx: postId // join된 값을 찾아서 처리하기 위해 적어줘야함
+            })
+            .then(response => {
+                setUpdateReply(uuidv4()); // 글 올리고 나서 새로 고침하려고 이렇게 해둔건데... 이걸 안 쓰는 방법이 있을까?
+                setComment("");
+            })
+            .catch(error => console.error(error));
+    }
+
+    useEffect(() => {
+        axios.get(`/blog/get/${postId}`)
+            .then(response => {
+                setPost(response.data);
+            })
+            .catch(error => console.error(error));
+    }, [updateReply]);
 
     return (
         <Wrapper>
@@ -98,9 +124,7 @@ function PostViewPage() {
                     <ContentText>{post.content}</ContentText>
 
                     <CommentLabel>댓글</CommentLabel>
-                    {/* 아직 미구현 */}
-                    {/* <CommentList comments={post.blogReplyList} /> */}
-                    {/* <CommentList comments={post.comment} /> */}
+                    <CommentList comments={post.blogReplyList} />
 
                     <TextInput height={40} value={comment}
                         onChange={(event) => {
@@ -109,8 +133,7 @@ function PostViewPage() {
                     />
                     <Button title="댓글 작성하기"
                         onClick={() => {
-                            // 현재 미구현으로 메인 페이지로 감
-                            navigate("/");
+                            addReply()
                         }}
                     />
                 </PostContainer>
