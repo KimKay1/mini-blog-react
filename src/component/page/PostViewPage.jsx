@@ -124,7 +124,7 @@ function PostViewPage() {
                     <ContentText>{post.content}</ContentText>
 
                     <CommentLabel>댓글</CommentLabel>
-                    <CommentList comments={post.blogReplyList} />
+                    <CommentList comments={post.blogReplyList} setUpdateReply={setUpdateReply} />
 
                     <TextInput height={40} value={comment}
                         onChange={(event) => {

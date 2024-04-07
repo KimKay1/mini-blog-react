@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 function CommentList(props) {
-    const { comments } = props;
+    const { comments, setUpdateReply } = props;
 
     // 댓글이 없는 경우를 처리하기 위해 조건문 추가
     if (!comments || comments.length === 0) {
@@ -25,7 +25,7 @@ function CommentList(props) {
         <Wrapper>
             {comments.map((comment) => {
                 return (
-                    <CommentListItem key={uuidv4()} comment={comment} /> // 기존의 key={comment.id}는 값이 없어서 uuid로 변경함
+                    <CommentListItem key={uuidv4()} comment={comment} setUpdateReply={setUpdateReply} /> // 기존의 key={comment.id}는 값이 없어서 uuid로 변경함
                 );
             })}
         </Wrapper>
