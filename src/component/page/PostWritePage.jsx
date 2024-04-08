@@ -49,9 +49,11 @@ function PostWritePage() {
             <Container>
                 <TextInput height={20} value={title}
                     onChange={(event) => { setTitle(event.target.value); }}
+                    placeholder="제목을 입력해주세요."
                 />
                 <TextInput height={480} value={content}
                     onChange={(event) => { setContent(event.target.value); }}
+                    placeholder="내용을 입력해주세요."
                 />
                 
                 <Button title="글 작성하기"
