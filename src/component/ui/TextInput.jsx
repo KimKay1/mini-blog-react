@@ -11,8 +11,7 @@ const StyledTextarea = styled.textarea`
 function TextInput(props) {
     const { height, value, onChange, placeholder } = props;
 
-    return <StyledTextarea height={height} value={value} onChange={onChange}
-                            placeholder={placeholder || ""} />;
+    return <StyledTextarea height={height} value={value} onChange={onChange} placeholder={placeholder || ""} />;
 }
 
 export default TextInput;

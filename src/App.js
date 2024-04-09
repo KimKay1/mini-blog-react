@@ -1,12 +1,10 @@
 import './App.css';
-import { useState } from "react";
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
 
 // Page import
 import MainPage from './component/page/MainPage';
@@ -24,7 +22,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <MainTitletext>나의 미니 블로그</MainTitletext>
+      <MainTitletext>나의 미니 블로그</MainTitletext>
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="post-write" element={<PostWritePage />} />

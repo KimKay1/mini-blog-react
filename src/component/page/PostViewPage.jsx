@@ -6,7 +6,6 @@ import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-// import data from "../../data.json";
 
 const Wrapper = styled.div`
     padding: 16px;
@@ -51,7 +50,6 @@ const CommentLabel = styled.p`
 function PostViewPage() {
     const navigate = useNavigate();
     const { postId } = useParams();
-
     const [post, setPost] = useState([]);
     const [comment, setComment] = useState("");
     const [updateReply, setUpdateReply] = useState("");
@@ -67,7 +65,7 @@ function PostViewPage() {
     }, []);
 
     const eventDelete = () => {
-        if(window.confirm("삭제하시겠습니까?")) {
+        if (window.confirm("삭제하시겠습니까?")) {
             axios.post(`/blog/delete/${postId}`)
                 .then(response => {
                     alert("삭제 완료");
@@ -82,9 +80,9 @@ function PostViewPage() {
         axios.post(`/reply/write`, {
             content: comment,
             idx: postId // join된 값을 찾아서 처리하기 위해 적어줘야함
-            })
+        })
             .then(response => {
-                setUpdateReply(uuidv4()); // 글 올리고 나서 새로 고침하려고 이렇게 해둔건데... 이걸 안 쓰는 방법이 있을까?
+                setUpdateReply(uuidv4()); // 글 올리고 나서 새로고침하려고 해둔 것
                 setComment("");
             })
             .catch(error => console.error(error));

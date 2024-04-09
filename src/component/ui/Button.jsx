@@ -11,7 +11,7 @@ const StyledButton = styled.button`
 function Button(props) {
     const { title, onClick } = props;
 
-     // title값이 없으면 button이라고 뜨게함
+    // title값이 없으면 button이라고 뜨게함
     return <StyledButton onClick={onClick}>{title || "button"} </StyledButton>;
 }
 

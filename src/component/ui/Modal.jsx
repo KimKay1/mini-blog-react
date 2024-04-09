@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from "./Button";
-import { useNavigate } from "react-router-dom";
 import TextInput from "./TextInput";
 
 const ModalWrapper = styled.div`
@@ -32,20 +31,17 @@ const ModalContent = styled.div`
 //     cursor: pointer;
 // `;
 
-function Modal({ comment, onClose , editReply, editComment, setEditComment, eventReplyDelete }) {
-    const navigate = useNavigate();
+function Modal({ onClose, editReply, editComment, setEditComment, eventReplyDelete }) {
 
     return (
         <ModalWrapper>
             <ModalContent onClick={(e) => e.stopPropagation()}>
-                {/*<CloseButton onClick={onClose}>X</CloseButton>*/}
-
                 <TextInput height={40} value={editComment}
-                           onChange={(event) => {
-                               setEditComment(
-                                   event.target.value
-                               );
-                           }}
+                    onChange={(event) => {
+                        setEditComment(
+                            event.target.value
+                        );
+                    }}
                 />
                 <Button
                     title="수정"

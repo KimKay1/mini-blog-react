@@ -34,14 +34,14 @@ function PostWritePage() {
             title: title,
             content: content
         })
-        .then(() => {
-            setTitle("");
-            setContent("");
+            .then(() => {
+                setTitle("");
+                setContent("");
 
-            alert("등록 완료");
-            navigate("/");
-        })
-        .catch(err => console.error(err));
+                alert("등록 완료");
+                navigate("/");
+            })
+            .catch(err => console.error(err));
     }
 
     return (
@@ -55,7 +55,7 @@ function PostWritePage() {
                     onChange={(event) => { setContent(event.target.value); }}
                     placeholder="내용을 입력해주세요."
                 />
-                
+
                 <Button title="글 작성하기"
                     onClick={submitBlog}
                 />

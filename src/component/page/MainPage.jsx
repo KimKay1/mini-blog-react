@@ -35,7 +35,7 @@ function MainPage() {
             return response.data; // 서버로부터 받은 데이터를 반환
         } catch (error) {
             console.error('Error fetching search results:', error);
-            throw error; // 에러를 잡아서 처리
+            throw error;
         }
     };
 
@@ -45,7 +45,7 @@ function MainPage() {
                 setData(data)
             })
             .catch(error => {
-                console.error('Error fetching search results:', error); // 에러 처리
+                console.error('Error fetching search results:', error);
             });
     };
 
@@ -74,7 +74,6 @@ function MainPage() {
                             navigete("/post-write");
                         }}
                     />
-
                     <PostList
                         posts={data}
                         onClickItem={(item) => {

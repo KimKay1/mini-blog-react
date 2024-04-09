@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Modal from "../ui/Modal";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
     width: calc(100% - 32px);
@@ -32,7 +31,6 @@ function CommentListItem(props) {
     const rIdx = comment.ridx;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editComment, setEditComment] = useState(props.comment.content);
-    const navigate = useNavigate();
 
     const handleModalOpen = () => {
         setIsModalOpen(true);
@@ -50,7 +48,7 @@ function CommentListItem(props) {
         })
             .then(response => {
                 handleModalClose();
-                setUpdateReply(uuidv4()); // 글 올리고 나서 새로 고침하려고 이렇게 해둔건데... 이걸 안 쓰는 방법이 있을까?
+                setUpdateReply(uuidv4()); // 글 올리고 나서 새로고침
             })
             .catch(error => console.error(error));
         console.log(props); // props에 idx값은 없고 ridx값은 있음... ridx값으로 idx값 찾아서 수정해야할듯
@@ -61,7 +59,6 @@ function CommentListItem(props) {
             axios.post(`/reply/delete/${rIdx}`)
                 .then(response => {
                     alert("삭제 완료");
-                    // navigate("/");
                     setUpdateReply(uuidv4());
                 })
                 .catch(error => console.error(error));
