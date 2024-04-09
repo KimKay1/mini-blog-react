@@ -51,7 +51,7 @@ function CommentListItem(props) {
                 setUpdateReply(uuidv4()); // 글 올리고 나서 새로고침
             })
             .catch(error => console.error(error));
-        console.log(props); // props에 idx값은 없고 ridx값은 있음... ridx값으로 idx값 찾아서 수정해야할듯
+        // console.log(props); // props에 idx값은 없고 ridx값은 있음... ridx값으로 idx값 찾아서 수정해야할듯
     }
 
     const eventReplyDelete = () => {

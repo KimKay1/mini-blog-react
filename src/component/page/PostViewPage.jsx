@@ -59,7 +59,7 @@ function PostViewPage() {
         axios.get(`/blog/get/${postId}`)
             .then(response => {
                 setPost(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => console.error(error));
     }, []);

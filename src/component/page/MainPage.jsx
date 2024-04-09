@@ -52,7 +52,7 @@ function MainPage() {
     useEffect(() => {
         axios.get("/blog/list")
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setData(response.data)
             })
             .catch(error => console.error(error));
