@@ -32,7 +32,7 @@ const ModalContent = styled.div`
 //     cursor: pointer;
 // `;
 
-function Modal({ comment, onClose , editReply, editComment, setEditComment }) {
+function Modal({ comment, onClose , editReply, editComment, setEditComment, eventReplyDelete }) {
     const navigate = useNavigate();
 
     return (
@@ -56,7 +56,7 @@ function Modal({ comment, onClose , editReply, editComment, setEditComment }) {
                 <Button
                     title="삭제"
                     onClick={() => {
-                        navigate("/");
+                        eventReplyDelete()
                     }}
                 />
                 <Button

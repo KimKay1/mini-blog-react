@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PostList from "../list/PostList";
 import Button from "../ui/Button";
-// import data from "../../data.json"; // 임의의 데이터
 import axios from "axios";
+import SearchBox from "../ui/SearchBox";
 
 const Wrapper = styled.div`
     padding: 16px;
@@ -24,37 +24,67 @@ const Container = styled.div`
     }
 `;
 
-function  MainPage() {
+function MainPage() {
     const navigete = useNavigate(); // 훅
     const [data, setData] = useState([]);
+    const [searchData, setSearchData] = useState([]);
+
+    const fetchSearchResults = async (searchTerm) => {
+        try {
+            const response = await axios.get(`/blog/list?searchTerm=${searchTerm}`);
+            return response.data; // 서버로부터 받은 데이터를 반환
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+            throw error; // 에러를 잡아서 처리
+        }
+    };
+
+    const handleSearch = (searchTerm) => {
+        // console.log('검색어:', searchTerm);
+        fetchSearchResults(searchTerm)
+            .then(data => {
+                setData(data)
+            })
+            .catch(error => {
+                console.error('Error fetching search results:', error); // 에러 처리
+            });
+    };
 
     useEffect(() => {
         axios.get("/blog/list")
-        .then(response => {
-            console.log(response.data);
-            setData(response.data)
-        })
-        .catch(error => console.error(error));
+            .then(response => {
+                console.log(response.data);
+                setData(response.data)
+            })
+            .catch(error => console.error(error));
     }, []);
 
-    return (
-        <Wrapper>
-            <Container>
-                <Button 
-                    title="글 작성하기"
-                    onClick={() => {
-                        navigete("/post-write");
-                    }} 
-                />
+    useEffect(() => {
+        setSearchData(data)
+    }, [data, setSearchData])
 
-                <PostList 
-                    posts={data}
-                    onClickItem={(item) => {
-                        navigete(`/post/${item.idx}`);
-                    }}
-                />
-            </Container>
-        </Wrapper>
+    return (
+        <div>
+
+            <Wrapper>
+                <SearchBox onSearch={handleSearch} />
+                <Container>
+                    <Button
+                        title="글 작성하기"
+                        onClick={() => {
+                            navigete("/post-write");
+                        }}
+                    />
+
+                    <PostList
+                        posts={data}
+                        onClickItem={(item) => {
+                            navigete(`/post/${item.idx}`);
+                        }}
+                    />
+                </Container>
+            </Wrapper>
+        </div>
     )
 }
 
