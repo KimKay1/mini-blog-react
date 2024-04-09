@@ -40,7 +40,6 @@ function MainPage() {
     };
 
     const handleSearch = (searchTerm) => {
-        // console.log('검색어:', searchTerm);
         fetchSearchResults(searchTerm)
             .then(data => {
                 setData(data)

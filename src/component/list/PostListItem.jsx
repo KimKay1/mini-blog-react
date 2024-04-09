@@ -27,7 +27,7 @@ function PostListItem(props) {
 
     return (
         <Wrapper onClick={onClick}>
-            <TitleText>{post.title}</TitleText>
+            <TitleText>{post.title} [{post.replyCnt}]</TitleText>
         </Wrapper>
     );
 }

@@ -123,7 +123,7 @@ function PostViewPage() {
                     <TitleText>{post.title}</TitleText>
                     <ContentText>{post.content}</ContentText>
 
-                    <CommentLabel>댓글</CommentLabel>
+                    <CommentLabel>댓글 [{post.replyCnt}]</CommentLabel>
                     <CommentList comments={post.blogReplyList} setUpdateReply={setUpdateReply} />
 
                     <TextInput height={40} value={comment}
