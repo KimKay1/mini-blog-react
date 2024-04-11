@@ -28,6 +28,8 @@ function PostListItem(props) {
     return (
         <Wrapper onClick={onClick}>
             <TitleText>{post.title} [{post.replyCnt}]</TitleText>
+            {/* 이것도 가능함 */}
+            {/* <TitleText>{post.title} [{post.blogReplyList.length || 0}]</TitleText> */}
         </Wrapper>
     );
 }

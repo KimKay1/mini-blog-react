@@ -62,7 +62,7 @@ function PostViewPage() {
                 // console.log(response.data);
             })
             .catch(error => console.error(error));
-    }, []);
+    }, [updateReply]);
 
     const eventDelete = () => {
         if (window.confirm("삭제하시겠습니까?")) {
@@ -88,13 +88,14 @@ function PostViewPage() {
             .catch(error => console.error(error));
     }
 
-    useEffect(() => {
-        axios.get(`/blog/get/${postId}`)
-            .then(response => {
-                setPost(response.data);
-            })
-            .catch(error => console.error(error));
-    }, [updateReply]);
+    // 이렇게 따로 새로 안 만들고 post부분의 [] 부분에 updateReply 적어줘도 되는듯?
+    // useEffect(() => {
+    //     axios.get(`/blog/get/${postId}`)
+    //         .then(response => {
+    //             setPost(response.data);
+    //         })
+    //         .catch(error => console.error(error));
+    // }, [updateReply]);
 
     return (
         <Wrapper>
